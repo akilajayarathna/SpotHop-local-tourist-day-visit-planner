@@ -2,6 +2,7 @@ require('dotenv').config();
 const express = require('express');
 const cors = require('cors');
 const db = require('./config/db')
+const placesRoute = require('./routes/placesRoutes');
 
 const app = express();
 
@@ -19,6 +20,11 @@ app.use(cors(corsOption));
 // Database connection check
 db();
 
+// base url
+app.use('/api/places', placesRoute);
+
+
+// server configuration
 const PORT = process.env.PORT || 3000;
 
 app.listen(PORT, () => {
