@@ -7,7 +7,7 @@ import PlaceDetails from './pages/PlaceDetails.jsx'
 createRoot(document.getElementById('root')).render(
   <BrowserRouter>
     <Routes>
-      <Route path='/' element={<App />} />
+      <Route path='/places' element={<App />} />
       <Route path='/places/:slug' element={<PlaceDetails />} />
     </Routes>
   </BrowserRouter>
