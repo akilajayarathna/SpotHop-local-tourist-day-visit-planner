@@ -17,6 +17,10 @@ const placeSchema = new mongoose.Schema(
             type: String,
             required: true
         },
+        slug: {
+            type: String,
+            unique: true
+        },
         distanceKm: Number,
         lat: Number,
         lng: Number,

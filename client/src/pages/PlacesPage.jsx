@@ -23,6 +23,7 @@ export default function PlacesPage () {
                             name={item.name}
                             description={item.description}
                             openingHours={item.openingHours}
+                            slug={item.slug}
                         />
                     )
                 )}

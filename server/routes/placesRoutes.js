@@ -1,8 +1,9 @@
 const express = require('express');
-const getAllPlaces = require('../controllers/placesController');
+const { getAllPlaces, getPlaceBySlug } = require('../controllers/placesController');
 
 const router = express.Router();
 
-router.get('/', getAllPlaces);
+router.get('/places', getAllPlaces);
+router.get('/places/:slug', getPlaceBySlug)
 
 module.exports = router;

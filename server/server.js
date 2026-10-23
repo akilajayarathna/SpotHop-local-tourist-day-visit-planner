@@ -21,7 +21,7 @@ app.use(cors(corsOption));
 db();
 
 // base url
-app.use('/api/places', placesRoute);
+app.use('/api', placesRoute);
 
 
 // server configuration

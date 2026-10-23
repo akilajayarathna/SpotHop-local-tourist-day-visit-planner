@@ -12,4 +12,16 @@ async function getAllPlaces (req, res) {
     }
 };
 
-module.exports = getAllPlaces;
+async function getPlaceBySlug(req, res) {
+    try {
+        const response = await Place.findOne({ slug: req.params.slug });
+        if (!response) {
+            return res.status(404).json({ message: "Place not found" });
+        }
+        res.json(response);
+    } catch (error) {
+        res.status(500).json({ message: error.message });
+    }
+}
+
+module.exports = { getAllPlaces, getPlaceBySlug };
