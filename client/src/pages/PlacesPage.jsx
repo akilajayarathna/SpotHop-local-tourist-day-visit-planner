@@ -47,7 +47,7 @@ export default function PlacesPage () {
                             photos={item.photos[0]}
                             name={item.name}
                             description={item.description}
-                            openingHours={item.openingHours}
+                            openingHours={item.openingHours?.[0]?.hours}
                             slug={item.slug}
                         />
                     )
