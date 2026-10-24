@@ -3,6 +3,7 @@ const express = require('express');
 const cors = require('cors');
 const db = require('./config/db')
 const placesRoute = require('./routes/placesRoutes');
+const categoriesRoute = require('./routes/categoryRoutes');
 
 const app = express();
 
@@ -12,16 +13,18 @@ app.use(express.json());
 // CORS middleware
 const corsOption = {
     origin: process.env.ORIGIN,
-    methods: ['GET', 'POST', 'PATCH', 'DELETE'],
+    methods: ['GET', 'POST', 'PUT', 'PATCH', 'DELETE'],
     allowedHeaders: ['Content-Type', 'Authorization']
 }
 app.use(cors(corsOption));
+//app.use(cors());
 
 // Database connection check
 db();
 
 // base url
 app.use('/api', placesRoute);
+app.use('/api', categoriesRoute);
 
 
 // server configuration

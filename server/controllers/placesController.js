@@ -25,6 +25,11 @@ async function getPlaceBySlug(req, res) {
 
 async function createPlace(req, res) {
     try {
+        const slugUsed = await Place.findOne({ slug: req.body.slug });
+        if (slugUsed) {
+            return res.status(400).json({ message: "This short name is already used" });
+        }
+
         const response = await Place.create(req.body);
         res.status(201).json(response);
     } catch (error) {
@@ -34,7 +39,15 @@ async function createPlace(req, res) {
 
 async function updatePlace(req, res) {
     try {
-        const response = await Place.findByIdAndUpdate(req.params.id, req.body, { new: true });
+        const slugUsed = await Place.findOne({
+            slug: req.body.slug,
+            _id: { $ne: req.params.id },
+        });
+        if (slugUsed) {
+            return res.status(400).json({ message: "This short name is already used" });
+        }
+        
+        const response = await Place.findByIdAndUpdate(req.params.id, req.body, { new: true, runValidators: true });
         if (!response) {
             return res.status(404).json({ message: "Place not found" });
         }

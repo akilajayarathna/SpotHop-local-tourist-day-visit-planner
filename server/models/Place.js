@@ -24,8 +24,12 @@ const placeSchema = new mongoose.Schema(
         distanceKm: Number,
         lat: Number,
         lng: Number,
-        openingHours: String,
-        travelTips: String
+        openingHours: [{ days: String, hours: String }],
+        travelTips: [ {title: String, description: String} ],
+        location: String,
+        highlights: [String],
+        contact: { phone: String, website: String },
+        entryRequirements: String
     },
     {
         timestamps: true
