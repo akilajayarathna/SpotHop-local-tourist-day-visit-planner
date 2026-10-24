@@ -25,6 +25,8 @@ db();
 // base url
 app.use('/api', placesRoute);
 app.use('/api', categoriesRoute);
+app.use("/api/auth", require("./routes/authRoutes"));
+app.use("/api/plan", require("./routes/planRoutes"));
 
 
 // server configuration
