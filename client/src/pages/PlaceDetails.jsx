@@ -1,6 +1,7 @@
+import { Link, useParams, useNavigate, useLocation } from "react-router";
+import { useAuth } from "../context/AuthContext";
 import { useEffect, useState } from "react";
 import axios from "axios";
-import { Link, useParams } from "react-router";
 import PlaceMap from "../components/PlaceMap";
 import {
     ArrowLeft,
@@ -29,6 +30,23 @@ export default function PlaceDetails() {
                 setError(true);
             });
     }, [slug]);
+
+    const { user } = useAuth();
+    const navigate = useNavigate();
+    const location = useLocation();
+    const [message, setMessage] = useState("");
+
+    const handleAddToPlan = () => {
+        if (!user) {
+            navigate("/login", { state: { from: location.pathname } });
+            return;
+        }
+
+        axios
+            .post(`http://localhost:5000/api/plan/${place._id}`)
+            .then(() => setMessage("Added to your plan"))
+            .catch(() => setMessage("Could not add to plan"));
+    };
 
     if (error) return <p className="p-10 text-center">Place not found.</p>;
     if (!place) return <p className="p-10 text-center">Loading...</p>;
@@ -72,7 +90,16 @@ export default function PlaceDetails() {
                     )}
                 </div>
 
-                <button className="absolute bottom-6 right-6 md:right-12 flex items-center gap-2 bg-orange-600 hover:bg-orange-700 text-white rounded-full px-5 py-2 text-sm font-semibold transition">
+                {message && (
+                    <p className="absolute bottom-20 right-6 md:right-12 bg-white rounded-md px-3 py-1 text-sm text-gray-700 shadow">
+                        {message}
+                    </p>
+                )}
+
+                <button
+                    onClick={handleAddToPlan}
+                    className="absolute bottom-6 right-6 md:right-12 flex items-center gap-2 bg-orange-600 hover:bg-orange-700 text-white rounded-full px-5 py-2 text-sm font-semibold transition"
+                >
                     <CalendarPlus className="w-4 h-4" />
                     Add to Plan
                 </button>

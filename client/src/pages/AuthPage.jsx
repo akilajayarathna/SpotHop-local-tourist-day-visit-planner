@@ -39,7 +39,7 @@ export default function AuthPage() {
     return (
         <div className="min-h-screen grid grid-cols-1 md:grid-cols-2">
             {/* Left panel */}
-            <div className="bg-gradient-to-br from-orange-500 to-orange-600 text-white p-10 flex flex-col justify-between">
+            <div className="bg-linear-to-br from-orange-500 to-orange-700 text-white m-10 p-10 flex flex-col justify-between">
                 <div>
                     <h1 className="text-3xl font-bold font-serif">
                         {isRegister ? "Join SpotHop" : "Welcome Back to SpotHop"}
@@ -48,6 +48,10 @@ export default function AuthPage() {
                         Sign in to access your saved Piliyandala itineraries, discover new local
                         eateries, and continue your adventure.
                     </p>
+                </div>
+
+                <div className="flex justify-center items-center">
+                    <img src="/placeholder.png" alt="icon" className="w-30 h-30 my-10 md:w-50 md:h-50 bg-amber-50/50 border border-amber-50 rounded-full p-5 hover:scale-105 transition-transform duration-300" />
                 </div>
 
                 <div className="hidden md:block">

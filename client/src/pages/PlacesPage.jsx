@@ -32,7 +32,7 @@ export default function PlacesPage () {
     }
 
     return (
-        <>
+        <div className="flex flex-col">
             <h1 className="font-bold m-5 text-2xl text-gray-600">Spots to Visit</h1>
             <FilterRow 
                 currentCategory={currentCategory}
@@ -53,7 +53,7 @@ export default function PlacesPage () {
                     )
                 )}
             </div>
-        </>
+        </div>
     );
 
 };

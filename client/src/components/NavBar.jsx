@@ -11,7 +11,7 @@ export default function Navbar() {
     };
 
     return (
-        <nav className="flex justify-between items-center px-6 py-4 bg-white border-b border-gray-200">
+        <nav className="flex flex-col justify-between items-center px-6 py-4 bg-white border-b border-gray-200">
             <Link to="/" className="text-xl font-bold font-serif text-orange-600">SpotHop</Link>
 
             <div className="flex items-center gap-5 text-sm font-semibold text-gray-700">

@@ -1,11 +1,12 @@
 import './App.css'
-import PlacesPage from './pages/PlacesPage'
+import { Outlet } from 'react-router'
+import Navbar from './components/Navbar'
 
 function App() {
-
   return (
     <>
-      <PlacesPage />
+      <Navbar />
+      <Outlet />
     </>
   )
 }

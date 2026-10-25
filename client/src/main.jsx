@@ -1,16 +1,34 @@
 import { createRoot } from 'react-dom/client'
 import './index.css'
-import { BrowserRouter, Routes, Route } from 'react-router'
+import { BrowserRouter, Routes, Route, Navigate } from 'react-router'
 import App from './App.jsx'
+import { AuthProvider } from './context/AuthContext'
+import ProtectedRoute from './components/ProtectedRoute'
+import PlacesPage from './pages/PlacesPage'
 import PlaceDetails from './pages/PlaceDetails'
-import DashboardPage from './pages/DashboardPage';
+import DashboardPage from './pages/DashboardPage'
+import AuthPage from './pages/AuthPage'
+import MyDayPage from './pages/MyDayPage'
 
 createRoot(document.getElementById('root')).render(
-  <BrowserRouter>
-    <Routes>
-      <Route path='/places' element={<App />} />
-      <Route path='/places/:slug' element={<PlaceDetails />} />
-      <Route path="/dashboard" element={<DashboardPage />} />
-    </Routes>
-  </BrowserRouter>
+  <AuthProvider>
+    <BrowserRouter>
+      <Routes>
+        <Route element={<App />}>
+          <Route index element={<Navigate to="/places" replace />} />
+          <Route path="places" element={<PlacesPage />} />
+          <Route path="places/:slug" element={<PlaceDetails />} />
+          <Route path="login" element={<AuthPage />} />
+          <Route
+            path="my-day"
+            element={<ProtectedRoute><MyDayPage /></ProtectedRoute>}
+          />
+          <Route
+            path="dashboard"
+            element={<ProtectedRoute adminOnly><DashboardPage /></ProtectedRoute>}
+          />
+        </Route>
+      </Routes>
+    </BrowserRouter>
+  </AuthProvider>
 )

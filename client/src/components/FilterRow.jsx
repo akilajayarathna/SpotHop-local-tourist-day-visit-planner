@@ -13,8 +13,8 @@ export default function FilterRow ({ currentCategory, setCurrentCategory, setSea
     }, []);
 
     return (
-        <div className="flex justify-around items-center my-5">
-            <div className="relative">
+        <div className="flex flex-col lg:flex-row justify-center  lg:justify-around items-center my-5">
+            <div className="relative mb-5">
                 <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-5 h-5 text-gray-400 pointer-events-none" />
                 <input
                     type="text"
@@ -26,7 +26,7 @@ export default function FilterRow ({ currentCategory, setCurrentCategory, setSea
                 </input>
             </div>
 
-            <div className="flex justify-around items-center gap-5 bg-gray-300/40 rounded-lg py-2 px-5">
+            <div className="flex justify-start lg:justify-around lg:items-center gap-2 lg:gap-5 bg-gray-300/40 rounded-lg py-2 px-5 flex-wrap lg:flex-nowrap">
                 {categories.map((item) => (
                     <button
                         key={item._id}
@@ -39,14 +39,6 @@ export default function FilterRow ({ currentCategory, setCurrentCategory, setSea
                     >{item.name}
                     </button>
                 ))}
-            </div>
-
-            <div>
-                <button
-                    className="border rounded-md border-gray-400 py-2 px-5"
-                >
-                    <ListFilter className="w-5 h-5 text-gray-600" />
-                </button>
             </div>
 
         </div>
